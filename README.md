@@ -39,7 +39,7 @@ int main(void) {
 }
 ```
 ## Результаты выполненной работы
-[https://imgur.com/a/rnQcIyI](https://i.imgur.com/MRgpvz8.png)
+![https://imgur.com/a/rnQcIyI](https://i.imgur.com/MRgpvz8.png)
 
 ## Постановка задачи 2
 Напишите программу, которая складывает два числа с использованием указателей на эти числа.
