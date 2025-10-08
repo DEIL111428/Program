@@ -28,3 +28,29 @@ def sum_of_two(nums, target):
 	- test_sum_of_two_2: проверяет, что для [3, 2, 4] и 6 возвращается [1, 2].
 	- test_sum_of_two_3: проверяет, что для [3, 3] и 6 возвращается [0, 1].
 - В конце запускается тестовый раннер с помощью unittest.main(), чтобы выполнить тесты и вывести подробный результат.
+
+```Python
+import unittest
+from LR_2 import sum_of_two
+
+class TestMath(unittest.TestCase):
+    def test_sum_of_two_1(self):
+        self.assertEqual(sum_of_two([2, 7, 11, 15], 9), [0, 1])
+        
+    def test_sum_of_two_2(self):
+        self.assertEqual(sum_of_two([3, 2, 4], 6), [1, 2])
+
+    def test_sum_of_two_3(self):
+        self.assertEqual(sum_of_two([3, 3], 6), [0, 1])
+
+    def test_sum_of_two_4(self):
+        self.assertEqual(sum_of_two([1, 2, 3], 10), [])
+
+    def test_sum_of_two_5(self):
+        self.assertEqual(sum_of_two([-1, -2, -3, 4], 1), [2, 3])
+
+    def test_sum_of_two_6(self):
+        self.assertEqual(sum_of_two([1, 2, 2, 3], 4), [0, 3])
+
+unittest.main(argv=[''], verbosity=2, exit=False)
+```
