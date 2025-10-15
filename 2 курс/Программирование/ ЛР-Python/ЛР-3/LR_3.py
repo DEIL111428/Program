@@ -16,8 +16,9 @@ def print_tree(tree, otstup=0):
     print(' ' * otstup + f"{tree['value']}")
     print_tree(tree['left'], otstup + 4)
 
-tree = gen_bin_tree()
-print_tree(tree)
+if __name__ == "__main__":
+    tree = gen_bin_tree()
+    print_tree(tree)
 
 """
             16777216
@@ -36,5 +37,6 @@ print_tree(tree)
         18.0
             27.0
 """
+
 
 
