@@ -7,7 +7,44 @@ def gen_bin_tree(
     left_branch: Callable = lambda x: x + x/2,
     right_branch: Callable = lambda x: x ** 2
 ) -> Optional[Dict]:
-    
+    """Генерирует бинарное дерево заданной высоты с корневым значением.
+
+    Функция рекурсивно строит бинарное дерево, где каждое значение узла
+    определяется применением заданных функций к значению родительского узла:
+    - левый потомок вычисляется через `left_branch`,
+    - правый потомок — через `right_branch`.
+
+    Args:
+        height (int): Высота дерева. Высота 0 соответствует дереву из одного узла.
+                      Если `height < 0`, функция возвращает `None`.
+        root_value (float): Начальное значение корневого узла.
+        left_branch (Callable[[float], float]): Функция для вычисления значения
+                                                левого потомка.
+        right_branch (Callable[[float], float]): Функция для вычисления значения
+                                                 правого потомка.
+
+    Returns:
+        Optional[Dict]: Представление дерева в виде вложенного словаря с ключами
+                        'value', 'left' и 'right'. Если `height < 0`, возвращается `None`.
+                        
+    Examples:
+        >>> tree = gen_bin_tree(height=2, root_value=1)
+        >>> print(json.dumps(tree, indent=2))
+        {
+          "value": 1,
+          "left": {
+            "value": 1.5,
+            "left": {"value": 2.25, "left": null, "right": null},
+            "right": {"value": 2.25, "left": null, "right": null}
+          },
+          "right": {
+            "value": 1,
+            "left": {"value": 1.5, "left": null, "right": null},
+            "right": {"value": 1, "left": null, "right": null}
+          }
+        }
+    """
+
     if height < 0:
         return None
 
