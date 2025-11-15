@@ -12,6 +12,17 @@ logger = logging.getLogger(__name__)
 
 
 def log_errors(func):
+    """Декоратор для логирования ошибок с использованием модуля logging.
+
+    Перехватывает исключения при выполнении функции и записывает их
+    в лог с уровнями ERROR (для ошибок запроса) и EXCEPTION (для прочих ошибок).
+
+    Args:
+        func (callable): Декорируемая функция.
+
+    Returns:
+        callable: Обёрнутая функция с логированием ошибок.
+    """
     @wraps(func)
     def wrapper(*args, **kwargs):
         try:
@@ -27,6 +38,23 @@ def log_errors(func):
 
 @log_errors
 def get_currencies(currency_codes, url="https://www.cbr-xml-daily.ru/daily_json.js"):
+    """Получает курсы валют с API ЦБ РФ с логированием через logging.
+
+    Возвращает курсы запрошенных валют. Отсутствующие валюты логируются
+    как предупреждение (WARNING). Критические ошибки (сетевые, структура ответа)
+    логируются как ошибки (ERROR).
+
+    Args:
+        currency_codes (list of str): Список ISO-кодов валют (например, ["USD", "JPY"]).
+        url (str, optional): URL API (по умолчанию — ЦБ РФ).
+
+    Returns:
+        dict or None: Словарь с курсами или None при критической ошибке.
+
+    Example:
+        >>> rates = get_currencies(["USD", "CNY"])
+        >>> print(rates.get("USD"))
+    """
     response = requests.get(url)
     response.raise_for_status()
     data = response.json()
