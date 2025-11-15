@@ -14,7 +14,7 @@ def gen_bin_tree(
     - левый потомок вычисляется через `left_branch`,
     - правый потомок — через `right_branch`.
 
-    Args:
+    Аргументы:
         height (int): Высота дерева. Высота 0 соответствует дереву из одного узла.
                       Если `height < 0`, функция возвращает `None`.
         root_value (float): Начальное значение корневого узла.
@@ -23,11 +23,11 @@ def gen_bin_tree(
         right_branch (Callable[[float], float]): Функция для вычисления значения
                                                  правого потомка.
 
-    Returns:
+    Возвращает:
         Optional[Dict]: Представление дерева в виде вложенного словаря с ключами
                         'value', 'left' и 'right'. Если `height < 0`, возвращается `None`.
                         
-    Examples:
+    Пример:
         >>> tree = gen_bin_tree(height=2, root_value=1)
         >>> print(json.dumps(tree, indent=2))
         {
@@ -69,3 +69,4 @@ def print_tree(tree: Dict) -> None:
 if __name__ == "__main__":
     tree = gen_bin_tree(height=4)
     print_tree(tree)
+
