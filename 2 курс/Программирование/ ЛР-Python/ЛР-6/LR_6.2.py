@@ -3,6 +3,17 @@ import sys
 from functools import wraps
 
 def log_errors(func):
+    """Декоратор для перехвата и вывода ошибок в stdout.
+
+    Перехватывает исключения, связанные с запросами к API и общие ошибки,
+    выводит их в stdout и возвращает None вместо вызова функции.
+
+    Args:
+        func (callable): Декорируемая функция.
+
+    Returns:
+        callable: Обёрнутая функция с обработкой ошибок.
+    """
     @wraps(func)
     def wrapper(*args, **kwargs):
         try:
@@ -18,6 +29,22 @@ def log_errors(func):
 
 @log_errors
 def get_currencies(currency_codes, url="https://www.cbr-xml-daily.ru/daily_json.js"):
+    """Получает курсы валют с API ЦБ РФ с автоматической обработкой ошибок.
+
+    Аналогично функции из 1-й итерации, но обёрнута в декоратор `@log_errors`,
+    который перехватывает исключения и выводит их в stdout.
+
+    Args:
+        currency_codes (list of str): Список кодов валют (например, ["USD", "EUR"]).
+        url (str, optional): URL API .
+
+    Returns:
+        dict or None: Словарь с курсами или None при ошибке.
+
+    Example:
+        >>> rates = get_currencies(["USD", "GBP"])
+        >>> if rates: print(rates["USD"])
+    """
     response = requests.get(url)
     response.raise_for_status()
     data = response.json()
@@ -38,4 +65,4 @@ def get_currencies(currency_codes, url="https://www.cbr-xml-daily.ru/daily_json.
 
 # Пример использования
 if __name__ == "__main__":
-    print(get_currencies(["USD", "EUR", "XYZ"]))
+    print(get_currencies(["USD", "EUR", "XYZ"])) # XYZ — несуществующая валюта
