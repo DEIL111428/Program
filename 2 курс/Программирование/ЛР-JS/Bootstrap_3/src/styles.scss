@@ -1,0 +1,23 @@
+// Включаем функции (необходимы для работы остальных файлов)
+@import "bootstrap/scss/functions";
+
+// Включаем остальные обязательные части Bootstrap
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/utilities";
+
+// Включаем только нужные компоненты
+@import "bootstrap/scss/reboot";      // Сброс стилей
+@import "bootstrap/scss/type";        // Типографика
+@import "bootstrap/scss/containers";  // .container
+@import "bootstrap/scss/grid";        // .row .col-*
+@import "bootstrap/scss/buttons";     // .btn
+@import "bootstrap/scss/modal";       // .modal
+@import "bootstrap/scss/close";       // .btn-close 
+@import "bootstrap/scss/transitions"; // Анимации
+
+// API утилит 
+@import "bootstrap/scss/utilities/api";
