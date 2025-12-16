@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Курсы валют</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Курсы валют ЦБ РФ</h2>
+        <div class="mb-3">
+            <a href="/" class="btn btn-secondary">На главную</a>
+            <a href="/currencies" class="btn btn-success">Обновить данные</a>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Код</th>
+                    <th>Название</th>
+                    <th>Номинал</th>
+                    <th>Курс (RUB)</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for curr in currencies %}
+                <tr>
+                    <td><strong>{{ curr.char_code }}</strong></td>
+                    <td>{{ curr.name }}</td>
+                    <td>{{ curr.nominal }}</td>
+                    <td>{{ curr.value }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
